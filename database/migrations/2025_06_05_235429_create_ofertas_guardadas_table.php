@@ -13,9 +13,13 @@ return new class extends Migration
     {
         Schema::create('ofertas_guardadas', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('usuario_id')->constrained('usuarios')->onDelete('cascade');
-            $table->foreignId('oferta_id')->constrained('ofertas')->onDelete('cascade');
+            $table->integer('usuario_id');
+            $table->integer('oferta_id');
             $table->timestamps();
+
+            $table->foreignId('usuario_id')->references('id')->on('usuarios')->onDelete('cascade');
+
+            $table->foreignId('oferta_id')->references('id')->on('ofertas')->onDelete('cascade');
         });
     }
 

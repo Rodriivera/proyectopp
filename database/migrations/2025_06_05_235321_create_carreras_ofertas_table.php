@@ -13,9 +13,13 @@ return new class extends Migration
     {
         Schema::create('carreras_ofertas', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('carrera_id')->constrained('carreras')->onDelete('cascade');
-            $table->foreignId('oferta_id')->constrained('ofertas')->onDelete('cascade');
+            $table->integer('carrera_id');
+            $table->integer('oferta_id');
             $table->timestamps();
+
+            $table->foreignId('carrera_id')->references('id')->on('carreras')->onDelete('cascade');
+
+            $table->foreignId('oferta_id')->references('id')->on('ofertas')->onDelete('cascade');
         });
     }
 

@@ -13,9 +13,11 @@ return new class extends Migration
     {
         Schema::create('aptitudes', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('usuario_id')->constrained('usuarios')->onDelete('cascade');
+            $table->integer('usuario_id');
             $table->string('descripcion');
             $table->timestamps();
+
+            $table->foreignId('usuario_id')->references('id')->on('usuarios')->onDelete('cascade');
         });
     }
 
