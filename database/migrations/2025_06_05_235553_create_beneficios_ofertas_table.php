@@ -13,9 +13,11 @@ return new class extends Migration
     {
         Schema::create('beneficios_ofertas', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('usuario_id')->constrained('usuarios')->onDelete('cascade');
-            $table->string('descripcion');
+            $table->int('oferta_id');
+            $table->string('beneficio');
             $table->timestamps();
+
+            $table->foreignId('oferta_id')->references('id')->on('ofertas')->onDelete('cascade');
         });
     }
 
